@@ -1,7 +1,4 @@
-DB_HOST = "localhost"
-DB_NAME = "miniproject"
-DB_USER = "postgres"
-DB_PASS = "roshini"
+
  
 import psycopg2
 from datetime import date
@@ -13,7 +10,7 @@ import psycopg2
 import pandas as pd
 
 st.set_page_config(page_title = 'Risk')
-conn = psycopg2.connect(dbname=DB_NAME,user=DB_USER,password=DB_PASS,host = DB_HOST)
+conn = psycopg2.connect(**st.secrets["postgres"])
 conn.autocommit = True
 cur = conn.cursor()
 st.title("Risk Tolarance")
