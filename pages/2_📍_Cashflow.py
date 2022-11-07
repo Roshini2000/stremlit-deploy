@@ -1,8 +1,4 @@
-DB_HOST = "localhost"
-DB_NAME = "miniproject"
-DB_USER = "postgres"
-DB_PASS = "roshini"
- 
+
 from asyncio.windows_events import NULL
 from pickle import NONE
 from pickletools import markobject
@@ -13,7 +9,7 @@ import psycopg2
 st.set_page_config(page_title = 'Cash Flow Summary')
 st.title("Cash Flow")
 userid = st.text_input("Enter your User ID : ")
-conn = psycopg2.connect(dbname=DB_NAME,user=DB_USER,password=DB_PASS,host = DB_HOST)
+conn = psycopg2.connect(**st.secrets["postgres"])
 conn.autocommit = True
 cur = conn.cursor()
 
