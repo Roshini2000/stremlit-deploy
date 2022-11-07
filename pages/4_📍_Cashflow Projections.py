@@ -1,7 +1,4 @@
-DB_HOST = "localhost"
-DB_NAME = "miniproject"
-DB_USER = "postgres"
-DB_PASS = "roshini"
+
  
 import streamlit as st
 import psycopg2
@@ -13,7 +10,7 @@ import matplotlib.pyplot as mp
 st.set_page_config(page_title = 'Cash Flow Projections')
 st.title("Cash Flow Projections")
 userid = st.text_input("Enter your User ID : ")
-conn = psycopg2.connect(dbname=DB_NAME,user=DB_USER,password=DB_PASS,host = DB_HOST)
+conn = psycopg2.connect(**st.secrets["postgres"])
 conn.autocommit = True
 cur = conn.cursor()
 todays_date = date.today() 
