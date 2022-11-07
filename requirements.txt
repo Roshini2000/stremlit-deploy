@@ -1,14 +1,1 @@
-matplotlib
-re
-streamlit
-psycopg2
-ssl
-datetime
-asyncio.windows_events
-pickle
-pickletools
-pandas
-numpy
-yfinance
-tabulate
-PIL
+matplotlib==3.6.0
