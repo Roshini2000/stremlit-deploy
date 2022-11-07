@@ -1,0 +1,51 @@
+CREATE PROCEDURE proctime(
+    youryear INT,
+	spouseyear INT,
+	child1year INT,
+	child2year INT,
+    startyear int,
+    endyear int
+)
+language sql    
+as $$
+do $$
+declare
+add integer := 0;
+begin
+while add <10 loop
+raise notice 'Out addition count %', add;
+add := add+1;
+end loop
+ 
+end$$
+
+INSERT INTO timetable(userid,years,yourage,spouseage,child1age,childage2) 
+VALUES(userid,startyear,startyear - youryear,startyear - spouseyear,startyear - child1year,startyear - child2year);
+
+INSERT INTO timetable (userid,years,yourage,spouseage,child1age,childage2) VALUES
+           (3,2022,50,60,20,15);
+           
+select * from timetable 
+
+CREATE PROCEDURE proctime(
+    userid integer,
+    youryear integer,
+    spouseyear integer,
+    child1year integer,
+    child2year integer,
+    startyear dec,
+    endyear dec
+)
+LANGUAGE SQL
+as $$
+BEGIN
+declare
+ startyear inter := DATEPART(year, CURRENT_TIMESTAMP);
+SET endyear := startyear+40;
+WHILE startyear < endyear DO
+INSERT INTO timetable(userid) 
+VALUES (userid);
+startyear := startyear+1;
+END WHILE;
+END $$;
+

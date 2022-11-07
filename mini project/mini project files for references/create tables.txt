@@ -1,0 +1,323 @@
+CREATE TABLE userdata
+(
+    userid INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    usermail varchar(50) UNIQUE,
+    usercontact varchar(20) UNIQUE
+);
+
+CREATE TABLE biodata
+(
+    userid int,
+    username character varying(50) NOT NULL,
+    spousename character varying(50),
+    namechild1 character varying(50),
+    namechild2 character varying(50),
+    dob int NOT NULL,
+    spousedob int NOT NULL,
+    dobchild1 int NOT NULL,
+    dobchild2 int NOT NULL,
+    occu character varying(60),
+    spouseoccu character varying(60),
+    occuchild1 character varying(60),
+    occuchild2 character varying(60),
+    CONSTRAINT userid FOREIGN KEY(userid) REFERENCES userdata(userid)
+);
+
+CREATE TABLE income
+(
+    userid int,
+    usersalary int,
+    annualbonus1 int,
+    spousesalary int,
+    annualbonus2 int,
+    catotherincome varchar(25),
+    otherincome int,
+    salary1pf int,
+    emp1pf int,
+    salary2pf int,
+    emp2pf int,
+    npssal1 int,
+    npssal2 int,
+    CONSTRAINT userid FOREIGN KEY(userid) REFERENCES userdata(userid)
+);
+
+CREATE TABLE outflowlifestylemonthly
+(
+    userid int,
+    rent int,
+    apartment int,
+    maidsalary int,
+    dhobi int,
+    electricity int,
+    water int,
+    tv int,
+    internet int,
+    cellphone int,
+    newspaper int,
+    groceries int,
+    diningout int,
+    vehiclefuel int,
+    givingspouse int,
+    entertainment int,
+    sports int,
+    shopping int,
+    medicines int,
+    miscellaneous int,
+    other varchar(30),
+    reasonamt int,
+    givingfamily int,
+    totalmothly int,
+    CONSTRAINT userid FOREIGN KEY(userid) REFERENCES userdata(userid)
+);
+
+CREATE TABLE outflowannualcorelife 
+(
+    userid int,
+    apropertytax int,
+    amedicalinsurancepremiums int,
+    avehiclemaintenanceandinsurance int,
+    afestivalexpenses int,
+    aclubevents int,
+    adental int,
+    adoctorvisits int,
+    mpropertytax int,
+    mmedicalinsurancepremiums int,
+    mvehiclemaintenanceandinsurance int,
+    mfestivalexpenses int,
+    mclubevents int,
+    mdental int,
+    mdoctorvisits int,
+    aother varchar(30),
+    aotheramt int,
+    totalannual int,
+    totalmonthly int,
+    CONSTRAINT userid FOREIGN KEY(userid) REFERENCES userdata(userid)
+);
+
+CREATE TABLE outflowannualnoncorelife
+(
+    userid int,
+    lifeinsurance int,
+    other1payments varchar(50),
+    reason1 int,
+    CONSTRAINT userid FOREIGN KEY(userid) REFERENCES userdata(userid)
+);
+
+CREATE TABLE outflowloan
+(
+    userid int,
+    homeloan int,
+    carloan int,
+    personalloan int,
+    creditcardloan int,
+    CONSTRAINT userid FOREIGN KEY(userid) REFERENCES userdata(userid)
+);
+
+CREATE TABLE investments
+(
+    userid int,
+    account int,
+    fds int,
+    rds int,
+    equity int,
+    debtfunds int,
+    stocks int,
+    ppf int,
+    nps int,
+    ssy int,
+    chitfunds int,
+    lending int,
+    epf1 int,
+    epf2 int,
+    gratuity1 int,
+    gratuity2 int,
+    espp int,
+    stockvested int,
+    stockunvested int,
+    CONSTRAINT userid FOREIGN KEY(userid) REFERENCES userdata(userid)
+);
+
+CREATE TABLE otherasset
+(
+    userid int,
+    curhome int,
+    currentalprop int,
+    currland int,
+    currjewel int,
+    incomehome int,
+    incomerentalprop int,
+    incomeland int,
+    incomejewel int,
+    loanonhome varchar(10),
+    loanonrentalprop varchar(10),
+    loanonland varchar(10),
+    loanonjewel varchar(10),
+    CONSTRAINT userid FOREIGN KEY(userid) REFERENCES userdata(userid)
+);
+
+CREATE TABLE insurance
+(
+    userid int,
+    policyname varchar(30),
+    premiumamt int,
+    company varchar(30),
+    commdate timestamp,
+    insured varchar(30),
+    matdate timestamp,
+    suminsured int,
+    CONSTRAINT userid FOREIGN KEY(userid) REFERENCES userdata(userid)
+);
+
+CREATE TABLE medinsurance
+(
+    userid int,
+    policyname varchar(30),
+    preamt int,
+    comp varchar(30),
+    covered varchar(30),
+    coveramount int,
+    CONSTRAINT userid FOREIGN KEY(userid) REFERENCES userdata(userid)
+);
+CREATE TABLE liabilityloan
+(
+    userid int,
+    curprinhomeloan int,
+    curprincarloan int,
+    curprinpersonalloan int,
+    curprineduloan int,
+    roihomeloan int,
+    roicarloan int,
+    roipersonalloan int,
+    roieduloan int,
+    yearhomeloan int,
+    yearcarloan int,
+    yearpersonalloan int,
+    yeareduloan int,
+    CONSTRAINT userid FOREIGN KEY(userid) REFERENCES userdata(userid)
+);
+CREATE TABLE biggoals 
+(
+    userid int,
+    otherneed1 varchar(30),
+    otherneed2 varchar(30),
+    otheramt1 int,
+    otheramt2 int,
+    yrmar int,
+    yrff int,
+    yrreno int,
+    yrnexcar int,
+    amtmar int,
+    amtff int,
+    amtreno int,
+    amtcar int,
+    CONSTRAINT userid FOREIGN KEY(userid) REFERENCES userdata(userid)
+);
+CREATE TABLE ongoingneeds 
+(
+    userid int,
+    optemer varchar(30),
+    optcar varchar(30), 
+    otherneed varchar(30),
+    optother varchar(30),
+    amtemer int,
+    amtcar int,
+    amtother int,
+    amtfunc int,
+    amtelectronic int,
+    amtvacations int,
+    amtdonation int,
+    CONSTRAINT userid FOREIGN KEY(userid) REFERENCES userdata(userid)
+);
+
+CREATE TABLE timetable
+    (userid int,    
+    years int,
+    yourage int,
+    spouseage int,
+    child1age int,
+    childage2 int,
+ CONSTRAINT userid FOREIGN KEY(userid) REFERENCES userdata(userid)
+);
+
+CREATE PROCEDURE insert_datatime(userid int)
+BEGIN 
+  INSERT INTO timetable (years,yourage,spouseage,child1age,childage2)
+  SELECT (date_part('year', CURRENT_DATE),
+          date_part('year', CURRENT_DATE)-dob,
+          date_part('year', CURRENT_DATE)-spousedob,
+          date_part('year', CURRENT_DATE)-dobchild1,
+          date_part('year', CURRENT_DATE)-dobchild2)
+  FROM biodata where yourage<100;
+END;
+SELECT date_part('year', CURRENT_DATE);
+
+
+INSERT INTO timetable (years,yourage,spouseage,child1age,childage2) VALUES
+  SELECT (date_part('year', CURRENT_DATE),
+          date_part('year', CURRENT_DATE)-dob,
+          date_part('year', CURRENT_DATE)-spousedob,
+          date_part('year', CURRENT_DATE)-dobchild1,
+          date_part('year', CURRENT_DATE)-dobchild2) from biodata;
+
+
+
+
+CREATE PROCEDURE proctime
+	 @userid INT
+
+AS
+BEGIN
+	DECLARE @youryear  INT
+	DECLARE @spouseyear INT
+	DECLARE @child1year INT
+	DECLARE @child2year INT	 
+	DECLARE @startyear INT
+	DECLARE @endyear INT
+
+	SET @youryear = SELECT dob FROM biodata where userid = @userid;
+	SET @spouseyear = SELECT spousedob FROM biodata where userid = @userid;
+	SET @child1year = SELECT dobchild1 where userid = @userid; 
+	SET @child2year = SELECT dobchild2 where userid = @userid;
+	SET @startyear = date_part('year', CURRENT_DATE);
+	SET @endyear = DATEADD(year, 40, @startyear)
+
+	WHILE ( @startyear < @endyear )
+	BEGIN 
+	INSERT INTO timetable( userid,years,yourage,spouseage,child1age,childage2)
+	VALUES(@userid, 
+	       @startyear,
+	       @startyear - @youryear,
+	       @startyear - @spouseyear,
+ 	       @startyear - @child1year,
+	       @startyear - @child2year)
+		
+	       SET @startdate = DATEADD(day, 1, @startdate)
+	END
+END
+ 
+
+
+
+
+CREATE TABLE risk
+(
+    userid int,
+    age int,
+    status varchar(50),
+    networth varchar(100),
+    ques1 varchar(100),
+    ques2score int,
+    ques3score int,
+    ques4score int,
+    ques5score int,
+    ques6score int,
+    totalscore int,
+    averagescore int,
+    CONSTRAINT userid FOREIGN KEY(userid) REFERENCES userdata(userid)
+);
+
+
+
+
+
+
