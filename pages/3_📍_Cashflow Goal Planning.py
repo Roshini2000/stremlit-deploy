@@ -1,8 +1,4 @@
-DB_HOST = "localhost"
-DB_NAME = "miniproject"
-DB_USER = "postgres"
-DB_PASS = "roshini"
- 
+
 from datetime import date
 from re import T
 import streamlit as st
@@ -12,7 +8,7 @@ st.set_page_config(page_title = 'Goal Planing')
 st.title("Goal Plannig")
 userid = st.text_input("Enter your User ID : ")
 inflation = st.number_input("Inflation rate in precent :")
-conn = psycopg2.connect(dbname=DB_NAME,user=DB_USER,password=DB_PASS,host = DB_HOST)
+conn = psycopg2.connect(**st.secrets["postgres"])
 conn.autocommit = True
 cur = conn.cursor()
 
