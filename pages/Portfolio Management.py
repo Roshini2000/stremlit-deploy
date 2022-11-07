@@ -1,7 +1,4 @@
-DB_HOST = "localhost"
-DB_NAME = "miniproject"
-DB_USER = "postgres"
-DB_PASS = "roshini"
+
 from matplotlib import ticker
 import pandas as pd
 import numpy as np
@@ -13,7 +10,7 @@ import psycopg2
 from PIL import Image
 
 
-conn = psycopg2.connect(dbname=DB_NAME,user=DB_USER,password=DB_PASS,host = DB_HOST)
+conn = psycopg2.connect(**st.secrets["postgres"])
 conn.autocommit = True
 cur = conn.cursor()
 st.header("Portfolio Management")
