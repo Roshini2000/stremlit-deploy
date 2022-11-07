@@ -1,9 +1,14 @@
-pip install numpy=1.23.4
-pip install pandas
-pip install seaborn
-pip install plotly
-pip install matplotlib
-pip install sklearn
-pip install streamlit
-pip install streamlit_extras
-
+matplotlib
+re
+streamlit
+psycopg2
+ssl
+datetime
+asyncio.windows_events
+pickle
+pickletools
+pandas
+numpy
+yfinance
+tabulate
+PIL
