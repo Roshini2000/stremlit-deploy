@@ -1,7 +1,3 @@
-DB_HOST = "localhost"
-DB_NAME = "miniproject"
-DB_USER = "postgres"
-DB_PASS = "roshini"
  
 from re import T
 import ssl
@@ -12,7 +8,7 @@ from datetime import date
 st.set_page_config(page_title = 'Retirement Page')
 st.title("Retirement Planning")
  
-conn = psycopg2.connect(dbname=DB_NAME,user=DB_USER,password=DB_PASS,host = DB_HOST)
+conn = psycopg2.connect(**st.secrets["postgres"])
 conn.autocommit = True
 tab1, tab2, tab3, tab4, tab5 = st.tabs(["Basic Info", "Income details", "Outflow Info","Assets and Liabilities","Goals and Anticipated Expense"])
  
